@@ -5,11 +5,18 @@ import { GlobalStyles } from "../../Constants/Styles"
 
 
 
-export default function ExpensesOutput({ expenses, periodName }){
+export default function ExpensesOutput({ expenses, periodName, fallBackText }){
+    let content = <Text style={styles.fallBackText}>{fallBackText}</Text>
+
+    if (expenses.length > 0) {
+        content = <ExpensesList expenses={expenses}  />
+
+    }
+
     return (
        <View style={styles.container} >
         <ExpensesSummary expenses={expenses} periodName={periodName} />
-        <ExpensesList expenses={expenses}  />
+        {content}
        </View>
     )
 }
@@ -20,5 +27,12 @@ const styles = StyleSheet.create({
         backgroundColor: GlobalStyles.colors.primary700,
         flex: 1,
 
+    },
+    fallBackText:{
+        color: 'white',
+        opacity: 0.8,
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 250,
     },
 })

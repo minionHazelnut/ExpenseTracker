@@ -4,12 +4,14 @@ import { GlobalStyles } from "../../Constants/Styles"
 
 export default function ExpensesSummary({ periodName, expenses }){
     const expenseSum = expenses.reduce((sum, expense) => {
-        return sum + expense.amount
+     //console.log(Number(expense.amount), sum, sum + Number(expense.amount))
+        return sum + Number(expense.amount)
     } , 0)
+
     return (
         <View style={styles.container}>
         <Text style={styles.periodStyle} >{periodName}</Text>
-        <Text style={styles.sum}>Rs. {expenseSum.toFixed(2)}</Text>
+        <Text style={styles.sum}>{expenseSum}</Text>
         {/* toFixed is a js method that limits the max number of decimal places allowerd to be shown, here 2 */}
     </View>
     )
